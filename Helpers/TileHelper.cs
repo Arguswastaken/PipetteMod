@@ -9,18 +9,6 @@ namespace PipetteMod.Helpers
 {
     internal static class TileHelper
     {
-        internal static readonly int[] distanceBlocks = new int[]
-        {
-            TileID.Containers,
-            TileID.Containers2,
-            TileID.FakeContainers,
-            TileID.FakeContainers2,
-            TileID.PiggyBank,
-            TileID.Safes,
-            TileID.DefendersForge,
-            TileID.VoidVault
-        };
-
         internal static bool TryGetTileAtMousePosition(Player player, Vector2 mouseWorldPosition, bool pickWalls, bool disablePickWhileInteracting, out Tile matchingTile)
         {
             Tile tileAtMousePosition = Framing.GetTileSafely(mouseWorldPosition);
@@ -28,7 +16,7 @@ namespace PipetteMod.Helpers
 
             if (IsTileAir(tileAtMousePosition) ||
                 (IsTileWallOnly(tileAtMousePosition) && !pickWalls) ||
-                (disablePickWhileInteracting && distanceBlocks.Any(id => id == tileAtMousePosition.TileType) && player.Distance(mouseWorldPosition) < 100)) // Don't pick chests if the player is in range to interact with them (depending on config)
+                (disablePickWhileInteracting && Main.tileContainer[matchingTile.TileType] && player.Distance(mouseWorldPosition) < 100)) // Don't pick chests if the player is in range to interact with them (depending on config)
                 return false;
 
             return true;
