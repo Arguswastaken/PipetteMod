@@ -24,7 +24,7 @@ namespace PipetteMod.Common.Players
             if (Me.HeldItem.damage > 0 && config.DisableWithToolsEquipped) return;
             if (config.EnablePickBlock && Me == Main.LocalPlayer && PickBlockKeybind.JustPressed)
             {
-                if (InventoryHelper.TryGetTileAtMousePosition(Me, Main.MouseWorld, config.PickWalls, config.DisablePickWhileInteracting, out Tile tileAtMousePosition))
+                if (TileHelper.TryGetTileAtMousePosition(Me, Main.MouseWorld, config.PickWalls, config.DisablePickWhileInteracting, out Tile tileAtMousePosition))
                 {
                     PickBlock(tileAtMousePosition);
                 }
@@ -33,7 +33,7 @@ namespace PipetteMod.Common.Players
 
         private void PickBlock(Tile tileAtMousePosition)
         {
-            if (!InventoryHelper.TryGetMatchingItem(Me, tileAtMousePosition, InventoryHelper.IsTileWallOnly(tileAtMousePosition), out Slot matchingItemSlot))
+            if (!InventoryHelper.TryGetMatchingItem(Me, tileAtMousePosition, TileHelper.IsTileWallOnly(tileAtMousePosition), out Slot matchingItemSlot))
                 return;
 
             if (InventoryHelper.TryGetIndexOfItemInHotbar(Me, matchingItemSlot.Item, out int hotbarItemIndex))
