@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.Xna.Framework;
-using ReLogic.Content;
 using Terraria;
 using Terraria.ID;
-using PipetteMod.Common.UI.PickBlockUI;
-using Terraria.ModLoader;
 
 namespace PipetteMod.Helpers
 {

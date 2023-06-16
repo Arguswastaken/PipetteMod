@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Linq;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameInput;
-using Terraria.ID;
 using Terraria.Audio;
 using Terraria.ModLoader;
 using PipetteMod.Common.Systems;
 using PipetteMod.Common.Configs;
-using PipetteMod.Common.UI.PickBlockUI;
 using PipetteMod.Helpers;
 using Slot = PipetteMod.Helpers.InventoryHelper.Slot;
 
