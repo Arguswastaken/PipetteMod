@@ -1,5 +1,6 @@
 # Pipette Mod
-Pick Block Mod for Terraria (currently unreleased).
+Pick Block Mod for Terraria
+Workshop Link: https://steamcommunity.com/sharedfiles/filedetails/?id=2990356011
 
 This is a simple mod to make building faster and more convenient. Hover the mouse over a tile in the world and hit the keybind to select that block in your hotbar.
 
