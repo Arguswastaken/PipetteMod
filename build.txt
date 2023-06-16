@@ -1,4 +1,4 @@
 displayName = Pipette Tool (Pick Block)
 author = Arguswastaken
-version = 1.0.3.0
+version = 1.0.3.1
 buildIgnore = .git\*, .vs\*, .editorconfig, obj\*, bin\*, *.user, *.csproj, *.sln,
