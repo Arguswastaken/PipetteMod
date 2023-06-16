@@ -24,28 +24,11 @@ namespace PipetteMod.Helpers
 
         internal static bool TryGetMatchingItem(Player player, Tile targetTile, bool isAWall, out Slot matchingItemSlot)
         {
-            if (!isAWall && TileHelper.TryGetTileGroupId(targetTile, out int tileGroupId)) // Make sure the right item is picked for variations of the same tile
+            if (!isAWall && TileHelper.TryGetFrameImportantStyle(targetTile, out int style)) // Make sure the right style is picked for FrameImportant tiles
             {
-                if (tileGroupId == 0)
-                {
-                    matchingItemSlot = GetSlotFromItem(player, player.inventory.FirstOrDefault(x => x.createTile == targetTile.TileType));
+                matchingItemSlot = GetSlotFromItem(player, player.inventory.FirstOrDefault(x => x.createTile == targetTile.TileType && x.placeStyle == style));
 
-                    return matchingItemSlot.Item is not null;
-                }
-                else
-                {
-                    TileHelper.GroupedTileInfo info = TileHelper.groupedTilesWithFrameLengths.Single(x => x.Id == tileGroupId);
-                    int frameLength = info.FrameLength;
-                    short axis = info.Axis == 'x' ? targetTile.TileFrameX : targetTile.TileFrameY;
-
-                    int tilePlaceStyle = axis / frameLength;
-
-                    matchingItemSlot = GetSlotFromItem(player, player.inventory.FirstOrDefault(x =>
-                    x.createTile == info.Id &&
-                    x.placeStyle == tilePlaceStyle));
-
-                    return matchingItemSlot.Item is not null && player.HeldItem != matchingItemSlot.Item;
-                }
+                return matchingItemSlot.Item is not null && player.HeldItem != matchingItemSlot.Item;
             }
 
             bool TilePredicate(Item x) => !x.IsAir && x.createTile == targetTile.TileType;

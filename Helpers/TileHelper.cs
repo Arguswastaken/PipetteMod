@@ -3,41 +3,12 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.ObjectData;
 
 namespace PipetteMod.Helpers
 {
     internal static class TileHelper
     {
-        internal struct GroupedTileInfo
-        {
-            internal int Id { get; private set; }
-            internal short FrameLength { get; private set; }
-            internal char Axis { get; private set; }
-
-            internal GroupedTileInfo(int _id, short _frameLength, char _axis)
-            {
-                Id = _id;
-                FrameLength = _frameLength;
-                Axis = _axis;
-            }
-        }
-
-        // This is the best way I could find to match (most) grouped tiles with separate items to avoid selecting the default item every time.
-        // But it requires a lot of manual labour, so this approach is tentative. I will probably try to improve this in the future
-        internal static readonly GroupedTileInfo[] groupedTilesWithFrameLengths = new GroupedTileInfo[]
-        {
-            new GroupedTileInfo(TileID.Torches, 22, 'y'),
-            new GroupedTileInfo(TileID.Containers, 36, 'x'),
-            new GroupedTileInfo(TileID.Containers2, 36, 'x'),
-            new GroupedTileInfo(TileID.FakeContainers, 36, 'x'),
-            new GroupedTileInfo(TileID.FakeContainers2, 36, 'x'),
-            new GroupedTileInfo(TileID.GemSaplings, 54, 'x'),
-            new GroupedTileInfo(TileID.WorkBenches, 36, 'x'),
-            new GroupedTileInfo(TileID.Tables, 54, 'x'),
-            new GroupedTileInfo(TileID.Bookcases, 54, 'x'),
-            new GroupedTileInfo(TileID.BeachPiles, 18, 'y')
-        };
-
         internal static readonly int[] distanceBlocks = new int[]
         {
             TileID.Containers,
@@ -79,10 +50,13 @@ namespace PipetteMod.Helpers
             return !tile.HasTile && hasAnyWallThatIsNotDirt;  // Always prioritize picking tiles over walls
         }
 
-        internal static bool TryGetTileGroupId(Tile tile, out int tileGroupId)
+        internal static bool TryGetFrameImportantStyle(Tile tile, out int style)
         {
-            tileGroupId = groupedTilesWithFrameLengths.SingleOrDefault(x => x.Id == tile.TileType).Id;
-            return tileGroupId != 0;
+            bool frameImportant = Main.tileFrameImportant[tile.TileType];
+
+            style = TileObjectData.GetTileStyle(tile); // Well that was easier than I expected...
+
+            return frameImportant;
         }
     }
 }
