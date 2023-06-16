@@ -4,7 +4,7 @@ This is a simple mod to make building faster and more convenient. Hover the mous
 
 I thought about this idea while playing so I just made it and figured other people might want to use it too. Make sure to adjust the mod config to your preferences.
 
-I have put this mod open source on GitHub. This is mostly for new modders to look at the code, but I guess you can submit an issue if you really want to.
+I have put this mod open source on GitHub. This is mostly for new modders to look at the code. I don't expect any issues/PRs especially since it is a small mod, but they are welcome if you really feel like making them.
 https://github.com/Arguswastaken/PipetteMod
 
 A slightly more detailed explanation of how it works: if you have the item in your hotbar, you will switch to it automatically. Otherwise it will be pulled from your inventory. If you have space in your hotbar it will be moved there and you will switch to it, otherwise it will swap with the block you are currently holding. It should work with any modded tile. I recommend setting the keybind to the right mouse button.
