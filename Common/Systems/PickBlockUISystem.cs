@@ -63,7 +63,7 @@ namespace PipetteMod.Common.Systems
 
         internal void DescribeItem(in Item item, int duration)
         {
-            pickBlockState.PickDescription.SetText($"Picked {item.Name} ({item.stack})");
+            pickBlockState.PickDescription.SetText($"{item.Name} ({item.stack})");
             activeTime = duration * 60;
             userInterface?.SetState(pickBlockState);
         }

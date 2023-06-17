@@ -1,0 +1,61 @@
+Mods: {
+	PipetteMod: {
+		Keybinds.PickBlock.DisplayName: Pick Block
+
+		Configs: {
+			PickBlockClientConfig: {
+				DisplayName: Pipette Mod Config
+
+				EnablePickBlock: {
+					Label: Enable Pick Block
+					Tooltip: ""
+				}
+
+				PickWalls: {
+					Label: Pick Walls
+					Tooltip: ""
+				}
+
+				OnlyPickFromHotbar: {
+					Label: Only pick blocks already in the hotbar
+					Tooltip: ""
+				}
+
+				AlwaysSwapWithHeldItem: {
+					Label: Always swap with the currently held block instead of filling hotbar
+					Tooltip: ""
+				}
+
+				DisableWithToolsEquipped: {
+					Label: Disable Pick Block when weapons or tools are equipped
+					Tooltip: ""
+				}
+
+				DisablePickWhileInteracting: {
+					Label: Disable Pick Block when close enough to open chests (useful when bound to RMB)
+					Tooltip: ""
+				}
+
+				PlaySoundOnPickBlock: {
+					Label: Play a sound effect on pick
+					Tooltip: ""
+				}
+
+				DisplayUIMessageOnPickBlock: {
+					Label: Display small UI message on pick
+					Tooltip: ""
+				}
+
+				MessageLengthSeconds: {
+					Label: Message display time (seconds)
+					Tooltip: ""
+				}
+
+				Headers: {
+					Functionality: Functionality
+					Feedback: Feedback
+				}
+			}
+		}
+	}
+}
