@@ -1,71 +1,66 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.UI;
-using Terraria.ModLoader;
 using PipetteMod.Common.UI.PickBlockUI;
 
-namespace PipetteMod.Common.Systems
+namespace PipetteMod.Common.Systems;
+
+internal class PickBlockUISystem : ModSystem
 {
-    internal class PickBlockUISystem : ModSystem
+    internal UserInterface userInterface;
+    internal PickBlockUIState pickBlockState;
+
+    private GameTime lastUpdateUiGameTime;
+
+    private int activeTime = -1;
+
+    public override void Load()
     {
-        internal UserInterface userInterface;
-        internal PickBlockUIState pickBlockState;
+        if (Main.dedServ) return;
 
-        private GameTime lastUpdateUiGameTime;
+        userInterface = new UserInterface();
+        pickBlockState = new PickBlockUIState();
+        pickBlockState.Activate();
+    }
 
-        private int activeTime = -1;
+    public override void UpdateUI(GameTime gameTime)
+    {
+        lastUpdateUiGameTime = gameTime;
 
-        public override void Load()
+        if (userInterface?.CurrentState != null)
         {
-            if (Main.dedServ) return;
+            userInterface.Update(gameTime);
 
-            userInterface = new UserInterface();
-            pickBlockState = new PickBlockUIState();
-            pickBlockState.Activate();
-        }
-
-        public override void UpdateUI(GameTime gameTime)
-        {
-            lastUpdateUiGameTime = gameTime;
-
-            if (userInterface?.CurrentState != null)
+            if (activeTime == 0)
             {
-                userInterface.Update(gameTime);
-
-                if (activeTime == 0)
-                {
-                    userInterface.SetState(null);
-                    activeTime = -1;
-                }
-                else if(activeTime > 0) activeTime--;
+                userInterface.SetState(null);
+                activeTime = -1;
             }
+            else if(activeTime > 0) activeTime--;
         }
+    }
 
-        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
-        {
-            int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
-            if (mouseTextIndex == -1) return;
+    public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
+    {
+        int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
+        if (mouseTextIndex == -1) return;
 
-            layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
-                "PipetteMod: PickBlockInterface",
-                delegate
+        layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
+            "PipetteMod: PickBlockInterface",
+            delegate
+            {
+                if (lastUpdateUiGameTime != null && userInterface?.CurrentState != null)
                 {
-                    if (lastUpdateUiGameTime != null && userInterface?.CurrentState != null)
-                    {
-                        userInterface.Draw(Main.spriteBatch, lastUpdateUiGameTime);
-                    }
-                    return true;
-                },
-                InterfaceScaleType.UI));
-        }
+                    userInterface.Draw(Main.spriteBatch, lastUpdateUiGameTime);
+                }
+                return true;
+            },
+            InterfaceScaleType.UI));
+    }
 
-        internal void DescribeItem(in Item item, int duration)
-        {
-            pickBlockState.PickDescription.SetText($"Picked {item.Name} ({item.stack})");
-            activeTime = duration * 60;
-            userInterface?.SetState(pickBlockState);
-        }
+    internal void DescribeItem(in Item item, int duration)
+    {
+        pickBlockState.PickDescription.SetText($"Picked {item.Name} ({item.stack})");
+        activeTime = duration * 60;
+        userInterface?.SetState(pickBlockState);
     }
 }
