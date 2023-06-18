@@ -1,7 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.UI;
+﻿using Terraria.UI;
 using Terraria.GameContent.UI.Elements;
 using PipetteMod.Helpers;
 

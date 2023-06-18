@@ -1,9 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using ReLogic.Graphics;
-using Terraria;
-using Terraria.UI;
-using Terraria.GameContent.UI.Elements;
+﻿using Terraria.GameContent.UI.Elements;
 
 namespace PipetteMod.Helpers;
 
