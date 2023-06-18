@@ -1,5 +1,4 @@
-﻿using Terraria.UI;
-using Terraria.GameContent.UI.Elements;
+﻿using Terraria.GameContent.UI.Elements;
 using PipetteMod.Helpers;
 
 namespace PipetteMod.Common.UI.PickBlockUI;

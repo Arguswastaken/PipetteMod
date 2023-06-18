@@ -1,8 +1,5 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.UI;
-using Terraria.ModLoader;
 using PipetteMod.Common.UI.PickBlockUI;
 
 namespace PipetteMod.Common.Systems;

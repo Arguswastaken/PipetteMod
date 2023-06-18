@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Terraria;
 using Terraria.ObjectData;
 
 namespace PipetteMod.Helpers;

@@ -1,7 +1,5 @@
-﻿using Terraria;
-using Terraria.GameInput;
+﻿using Terraria.GameInput;
 using Terraria.Audio;
-using Terraria.ModLoader;
 using PipetteMod.Common.Systems;
 using PipetteMod.Common.Configs;
 using PipetteMod.Helpers;

@@ -1,6 +1,4 @@
-﻿using Terraria.ModLoader;
-
-namespace PipetteMod.Common.Systems;
+﻿namespace PipetteMod.Common.Systems;
 
 public class KeybindSystem : ModSystem
 {
