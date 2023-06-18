@@ -87,10 +87,9 @@ internal static class InventoryHelper
         player.changeItem = emptyItem.Index;
     }
 
-    internal static void SwapTwoItems(Player player, Slot x, Slot y)
-    {
-        (player.inventory[x.Index], player.inventory[y.Index]) = (player.inventory[y.Index], player.inventory[x.Index]);
-    }
+    internal static void SwapTwoItems(Player player, Slot x, Slot y) =>
+        (player.inventory[x.Index], player.inventory[y.Index]) = 
+            (player.inventory[y.Index], player.inventory[x.Index]);
 
     internal static bool TryGetHeldItemSlot(Player player, out Slot heldItemSlot)
     {
@@ -98,5 +97,6 @@ internal static class InventoryHelper
         return heldItemSlot.Item is not null;
     }
 
-    private static Slot GetSlotFromItem(Player player, Item item) => new Slot(item, Array.IndexOf(player.inventory, item));
+    private static Slot GetSlotFromItem(Player player, Item item) => 
+        new Slot(item, Array.IndexOf(player.inventory, item));
 }
