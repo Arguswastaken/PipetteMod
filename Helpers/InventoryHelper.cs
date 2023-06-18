@@ -98,5 +98,5 @@ internal static class InventoryHelper
     }
 
     private static Slot GetSlotFromItem(Player player, Item item) => 
-        new Slot(item, Array.IndexOf(player.inventory, item));
+        new(item, Array.IndexOf(player.inventory, item));
 }
